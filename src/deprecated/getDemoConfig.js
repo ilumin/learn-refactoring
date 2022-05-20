@@ -87,12 +87,12 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
 
 function getLanguageConfig(demoData, options) {
   switch (demoData.codeVariant) {
-  case CODE_VARIANTS.TS:
-    return tsDemo(demoData, options)
-  case CODE_VARIANTS.JS:
-    return jsDemo(demoData, options)
-  default:
-    throw new Error(`Unsupported codeVariant: ${demoData.codeVariant}`)
+    case CODE_VARIANTS.TS:
+      return tsDemo(demoData, options)
+    case CODE_VARIANTS.JS:
+      return jsDemo(demoData, options)
+    default:
+      throw new Error(`Unsupported codeVariant: ${demoData.codeVariant}`)
   }
 }
 
