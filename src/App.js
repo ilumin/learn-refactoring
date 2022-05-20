@@ -1,21 +1,21 @@
-import React from "react";
-import LZString from "lz-string";
-import Highlight, { defaultProps } from "prism-react-renderer";
-import getDemoConfig from "./deprecated/getDemoConfig";
+import React from 'react'
+import LZString from 'lz-string'
+import Highlight, { defaultProps } from 'prism-react-renderer'
+import getDemoConfig from './deprecated/getDemoConfig'
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
-    .replace(/\+/g, "-") // Convert '+' to '-'
-    .replace(/\//g, "_") // Convert '/' to '_'
-    .replace(/=+$/, ""); // Remove ending '='
+    .replace(/\+/g, '-') // Convert '+' to '-'
+    .replace(/\//g, '_') // Convert '/' to '_'
+    .replace(/=+$/, '') // Remove ending '='
 }
 
 function addHiddenInput(form, name, value) {
-  const input = document.createElement("input");
-  input.type = "hidden";
-  input.name = name;
-  input.value = value;
-  form.appendChild(input);
+  const input = document.createElement('input')
+  input.type = 'hidden'
+  input.name = name
+  input.value = value
+  form.appendChild(input)
 }
 
 const jsCode = `import * as React from 'react';
@@ -30,7 +30,7 @@ export default function BasicButtons() {
       <Button variant="outlined">Outlined</Button>
     </Stack>
   );
-}`;
+}`
 
 const tsCode = `import * as React from 'react';
 import Stack from '@mui/material/Stack';
@@ -44,33 +44,33 @@ export default function BasicButtons(): React.ReactElement {
       <Button variant="outlined">Outlined</Button>
     </Stack>
   );
-}`;
+}`
 
 const CODE = {
   JS: jsCode,
   TS: tsCode,
-};
+}
 
 function App() {
-  const [codeVariant, setCodeVariant] = React.useState("JS");
+  const [codeVariant, setCodeVariant] = React.useState('JS')
   const demoData = {
-    title: "A demo",
-    githubLocation: "",
-    language: "en",
+    title: 'A demo',
+    githubLocation: '',
+    language: 'en',
     codeVariant,
     raw: CODE[codeVariant],
-  };
+  }
   const handleCodeSandboxClick = () => {
-    const demoConfig = getDemoConfig(demoData);
+    const demoConfig = getDemoConfig(demoData)
     const parameters = compress({
       files: {
-        "package.json": {
+        'package.json': {
           content: {
             name: demoConfig.title,
             description: demoConfig.description,
             dependencies: demoConfig.dependencies,
             devDependencies: {
-              "react-scripts": "latest",
+              'react-scripts': 'latest',
               ...demoConfig.devDependencies,
             },
             main: demoConfig.main,
@@ -81,61 +81,62 @@ function App() {
           },
         },
         ...Object.keys(demoConfig.files).reduce((files, name) => {
-          files[name] = { content: demoConfig.files[name] };
-          return files;
+          files[name] = { content: demoConfig.files[name] }
+          return files
         }, {}),
       },
-    });
+    })
 
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.target = "_blank";
-    form.action = "https://codesandbox.io/api/v1/sandboxes/define";
-    addHiddenInput(form, "parameters", parameters);
+    const form = document.createElement('form')
+    form.method = 'POST'
+    form.target = '_blank'
+    form.action = 'https://codesandbox.io/api/v1/sandboxes/define'
+    addHiddenInput(form, 'parameters', parameters)
     addHiddenInput(
       form,
-      "query",
-      codeVariant === "TS" ? "file=/demo.tsx" : "file=/demo.js"
-    );
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-  };
+      'query',
+      codeVariant === 'TS' ? 'file=/demo.tsx' : 'file=/demo.js'
+    )
+    document.body.appendChild(form)
+    form.submit()
+    document.body.removeChild(form)
+  }
 
   const handleStackBlitzClick = () => {
     const demoConfig = getDemoConfig(demoData, {
-      indexPath: "index.html",
+      indexPath: 'index.html',
       previewPackage: false,
-    });
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.target = "_blank";
-    form.action = "https://stackblitz.com/run";
-    addHiddenInput(form, "project[template]", "create-react-app");
-    addHiddenInput(form, "project[title]", demoConfig.title);
+    })
+    const form = document.createElement('form')
+    form.method = 'POST'
+    form.target = '_blank'
+    form.action = 'https://stackblitz.com/run'
+    addHiddenInput(form, 'project[template]', 'create-react-app')
+    addHiddenInput(form, 'project[title]', demoConfig.title)
     addHiddenInput(
       form,
-      "project[description]",
+      'project[description]',
       `# ${demoConfig.title}\n${demoConfig.description}`
-    );
+    )
     addHiddenInput(
       form,
-      "project[dependencies]",
+      'project[dependencies]',
       JSON.stringify(demoConfig.dependencies)
-    );
+    )
     addHiddenInput(
       form,
-      "project[devDependencies]",
+      'project[devDependencies]',
       JSON.stringify(demoConfig.devDependencies)
-    );
+    )
     Object.keys(demoConfig.files).forEach((key) => {
-      const value = demoConfig.files[key];
-      addHiddenInput(form, `project[files][${key}]`, value);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-  };
+      const value = demoConfig.files[key]
+      addHiddenInput(form, `project[files][${key}]`, value)
+    })
+    document.body.appendChild(form)
+    form.submit()
+    document.body.removeChild(form)
+  }
+
   return (
     <div className="max-w-screen-lg mx-auto min-h-[100vh] py-10 px-2">
       <h1 className="text-2xl font-bold mb-4">{demoData.title}</h1>
@@ -155,23 +156,23 @@ function App() {
       <div className="flex justify-between gap-2 py-4">
         <div className="flex gap-2">
           <button
-            aria-pressed={codeVariant === "JS"}
-            onClick={() => setCodeVariant("JS")}
+            aria-pressed={codeVariant === 'JS'}
+            onClick={() => setCodeVariant('JS')}
             className={
-              codeVariant === "JS"
-                ? "bg-blue-700 text-white hover:bg-blue-600"
-                : ""
+              codeVariant === 'JS'
+                ? 'bg-blue-700 text-white hover:bg-blue-600'
+                : ''
             }
           >
             JS
           </button>
           <button
-            aria-pressed={codeVariant === "TS"}
-            onClick={() => setCodeVariant("TS")}
+            aria-pressed={codeVariant === 'TS'}
+            onClick={() => setCodeVariant('TS')}
             className={
-              codeVariant === "TS"
-                ? "bg-blue-700 text-white hover:bg-blue-600"
-                : ""
+              codeVariant === 'TS'
+                ? 'bg-blue-700 text-white hover:bg-blue-600'
+                : ''
             }
           >
             TS
@@ -183,7 +184,7 @@ function App() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
