@@ -6,11 +6,9 @@ import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
-  <StyledEngineProvider injectFirst>
-    <CssVarsProvider>
-      <Demo />
-    </CssVarsProvider>
-  </StyledEngineProvider>
+  <CssVarsProvider>
+    <Demo />
+  </CssVarsProvider>
 );`,
     'demo.js': `import * as React from 'react';
 import Button from '@mui/joy/Button';
@@ -22,19 +20,17 @@ export default function BasicButtons() {
 }`,
   },
   TS: {
-    'index.js': `import * as React from 'react';
+    'index.tsx': `import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
-  <StyledEngineProvider injectFirst>
-    <CssVarsProvider>
-      <Demo />
-    </CssVarsProvider>
-  </StyledEngineProvider>
+  <CssVarsProvider>
+    <Demo />
+  </CssVarsProvider>
 );`,
-    'demo.js': `import * as React from 'react';
+    'demo.tsx': `import * as React from 'react';
 import Button from '@mui/joy/Button';
 
 export default function BasicButtons(): React.ReactElement {

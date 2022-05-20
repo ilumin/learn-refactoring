@@ -170,6 +170,7 @@ export function getDependencies(raw, options = {}) {
   }
 
   deps['@babel/runtime'] = 'latest'
+  deps['@mui/joy'] = versions['@mui/joy']
 
   return deps
 }

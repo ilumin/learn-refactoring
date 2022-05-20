@@ -1,5 +1,6 @@
 import { CODE_VARIANTS } from './constants'
 import { getDependencies } from './helpers'
+import { joy } from '../challenges/templates'
 
 function jsDemo(demoData, options) {
   return {
@@ -24,6 +25,11 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </StyledEngineProvider>
 );
     `.trim(),
+      ...joy.JS,
+    },
+    main: 'index.js',
+    scripts: {
+      start: 'react-scripts start',
     },
   }
 }
@@ -44,6 +50,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
+import { joy } from '../challenges/templates';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
   <StyledEngineProvider injectFirst>
@@ -51,6 +58,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </StyledEngineProvider>
 );
     `.trim(),
+      ...joy.TS,
       'tsconfig.json': `{
   "compilerOptions": {
     "target": "es5",
