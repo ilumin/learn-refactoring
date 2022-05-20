@@ -162,8 +162,7 @@ function App() {
               codeVariant === 'JS'
                 ? 'bg-blue-700 text-white hover:bg-blue-600'
                 : ''
-            }
-          >
+            }>
             JS
           </button>
           <button
@@ -173,8 +172,7 @@ function App() {
               codeVariant === 'TS'
                 ? 'bg-blue-700 text-white hover:bg-blue-600'
                 : ''
-            }
-          >
+            }>
             TS
           </button>
         </div>

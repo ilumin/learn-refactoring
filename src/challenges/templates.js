@@ -1,6 +1,6 @@
 export const joy = {
   JS: {
-    "index.js": `import * as React from 'react';
+    'index.js': `import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     </CssVarsProvider>
   </StyledEngineProvider>
 );`,
-    "demo.js": `import * as React from 'react';
+    'demo.js': `import * as React from 'react';
 import Button from '@mui/joy/Button';
 
 export default function BasicButtons() {
@@ -22,7 +22,7 @@ export default function BasicButtons() {
 }`,
   },
   TS: {
-    "index.js": `import * as React from 'react';
+    'index.js': `import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
@@ -34,7 +34,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
     </CssVarsProvider>
   </StyledEngineProvider>
 );`,
-    "demo.js": `import * as React from 'react';
+    'demo.js': `import * as React from 'react';
 import Button from '@mui/joy/Button';
 
 export default function BasicButtons(): React.ReactElement {
@@ -43,4 +43,4 @@ export default function BasicButtons(): React.ReactElement {
   );
 }`,
   },
-};
+}

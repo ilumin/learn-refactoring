@@ -1,5 +1,5 @@
-import { CODE_VARIANTS } from "./constants";
-import { getDependencies } from "./helpers";
+import { CODE_VARIANTS } from './constants'
+import { getDependencies } from './helpers'
 
 function jsDemo(demoData, options) {
   return {
@@ -11,8 +11,8 @@ function jsDemo(demoData, options) {
           : undefined,
     }),
     files: {
-      "demo.js": demoData.raw,
-      "index.js": `
+      'demo.js': demoData.raw,
+      'index.js': `
 import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
 );
     `.trim(),
     },
-  };
+  }
 }
 
 function tsDemo(demoData, options) {
@@ -38,8 +38,8 @@ function tsDemo(demoData, options) {
           : undefined,
     }),
     files: {
-      "demo.tsx": demoData.raw,
-      "index.tsx": `
+      'demo.tsx': demoData.raw,
+      'index.tsx': `
 import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 import { StyledEngineProvider } from '@mui/material/styles';
@@ -51,7 +51,7 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
   </StyledEngineProvider>
 );
     `.trim(),
-      "tsconfig.json": `{
+      'tsconfig.json': `{
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -78,26 +78,26 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
 }
       `,
     },
-    main: "index.tsx",
+    main: 'index.tsx',
     scripts: {
-      start: "react-scripts start",
+      start: 'react-scripts start',
     },
-  };
+  }
 }
 
 function getLanguageConfig(demoData, options) {
   switch (demoData.codeVariant) {
-    case CODE_VARIANTS.TS:
-      return tsDemo(demoData, options);
-    case CODE_VARIANTS.JS:
-      return jsDemo(demoData, options);
-    default:
-      throw new Error(`Unsupported codeVariant: ${demoData.codeVariant}`);
+  case CODE_VARIANTS.TS:
+    return tsDemo(demoData, options)
+  case CODE_VARIANTS.JS:
+    return jsDemo(demoData, options)
+  default:
+    throw new Error(`Unsupported codeVariant: ${demoData.codeVariant}`)
   }
 }
 
 export default function getDemoConfig(demoData, options = {}) {
-  const { indexPath = "public/index.html", previewPackage = true } = options;
+  const { indexPath = 'public/index.html', previewPackage = true } = options
   const baseConfig = {
     title: demoData.title,
     description: demoData.githubLocation,
@@ -124,10 +124,10 @@ export default function getDemoConfig(demoData, options = {}) {
 </html>
 `.trim(),
     },
-  };
+  }
   const languageConfig = getLanguageConfig(demoData, {
     previewPackage,
-  });
+  })
 
   return {
     ...baseConfig,
@@ -136,5 +136,5 @@ export default function getDemoConfig(demoData, options = {}) {
       ...baseConfig.files,
       ...languageConfig.files,
     },
-  };
+  }
 }

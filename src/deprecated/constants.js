@@ -1,4 +1,4 @@
 export const CODE_VARIANTS = {
-  JS: "JS",
-  TS: "TS",
-};
+  JS: 'JS',
+  TS: 'TS',
+}
