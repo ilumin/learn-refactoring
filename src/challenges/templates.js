@@ -6,9 +6,11 @@ import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
-  <CssVarsProvider>
-    <Demo />
-  </CssVarsProvider>
+  <StyledEngineProvider injectFirst>
+    <CssVarsProvider>
+      <Demo />
+    </CssVarsProvider>
+  </StyledEngineProvider>
 );`,
     'demo.js': `import * as React from 'react';
 import Button from '@mui/joy/Button';
@@ -26,9 +28,11 @@ import { StyledEngineProvider, CssVarsProvider } from '@mui/joy/styles';
 import Demo from './demo';
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
-  <CssVarsProvider>
-    <Demo />
-  </CssVarsProvider>
+  <StyledEngineProvider injectFirst>
+    <CssVarsProvider>
+      <Demo />
+    </CssVarsProvider>
+  </StyledEngineProvider>
 );`,
     'demo.tsx': `import * as React from 'react';
 import Button from '@mui/joy/Button';
